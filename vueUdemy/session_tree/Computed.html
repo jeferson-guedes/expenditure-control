@@ -9,9 +9,10 @@
 </head>
 <body>
     <div id="app">
-        <button v-on:click="increase">Click me</button>
+        <button v-on:click="counter++">Increase</button>
+        <button v-on:click="counter--">Decrease</button>
         <p>Counter: {{ counter }}</p>
-        <p>Result: {{ result }}</p>
+        <p>Result: {{ result() }}</p>
 
     </div>
     <script> 
@@ -23,19 +24,16 @@
                 result: '',
                 mensagem: 'Alertou !'
             },
+            computed: {
+                output: function () {
+                    return this.counter > 5 ? 'Greater 5' : 'Smaller 5';
+                }
+            },
             methods: {
 
-                increase:  function() {
-                    this.counter++;
-                    this.result = this.counter > 5 ? this.alertCounter() : 'Smaller 5';
-                }, 
-
-                alertCounter: function() {
-                    alert(this.mensagem);
-                    return 'Greater 5';
+                result = function () {
+                    return this.counter > 5 ? 'Greater 5' : 'Smaller 5';
                 }
-
-                
             }
         });    
     </script>
